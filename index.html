@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生成绩管理系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.21.2/bootstrap-table.css" rel="stylesheet" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.21.2/bootstrap-table.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid position-relation bg-white d-flex p-0">
+      <!-- 侧边栏 start -->
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar navbar-light">
+          <!-- 标题 -->
+          <a href="index.html" class="navbar-brand mx-4 mb-3">
+            <h3 class="text-primary">
+              <i class="bi bi-exclude"></i>
+              学生成绩管理
+            </h3>
+          </a>
+
+          <!-- 菜单 -->
+          <div class="navbar-nav w-100">
+            <a href="index.html" class="nav-item nav-link active">
+              <i class="bi bi-house-door me-2"></i>
+              首页
+            </a>
+            <a href="javascript:;" class="nav-link">
+              <i class="bi bi-bell-fill me-2"></i>
+              通知
+            </a>
+            <a href="myCenter.html" class="nav-link">
+              <i class="bi bi-arrows-move me-2"></i>
+              个人中心
+            </a>
+          </div>
+        </nav>
+      </div>
+      <!-- 侧边栏 end -->
+
+      <!-- 内容区域start -->
+      <div class="content">
+        <!-- 头部导航start -->
+        <nav class="navbar navbar-expand bg-light sticky-top px-4 py-0">
+          <!-- 手机模式 收起菜单 显示平台logo -->
+          <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0">
+              <i class="bi bi-exclude"></i>
+            </h2>
+          </a>
+          <!-- 收缩侧边菜单 -->
+          <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="bi bi-border-width"></i>
+          </a>
+
+          <form class="d-none d-md-flex ms-4">
+            <input class="form-control border-0" type="search" placeholder="搜索" />
+          </form>
+          <div class="navbar-nav align-items-center ms-auto">
+            <div class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="bi bi-envelop me-lg-2"></i>
+                <span class="d-none d-lg-inline-flex">信息</span>
+              </a>
+            </div>
+
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-bell me-lg-2"></i>
+                <span class="d-none d-lg-inline-flex">通知</span>
+              </a>
+              <!-- 下拉的内容 -->
+              <div class="dropdown-menu dropdown-menu-end bg-light border-0 rouded-0 rouded-bottom m-0">
+                <a class="dropdown-item" href="#">
+                  <h6 class="fw-normal mb-0">1</h6>
+                  <small>Action1</small>
+                </a>
+                <hr class="dropdown-divider" />
+                <a class="dropdown-item" href="#">
+                  <h6 class="fw-normal mb-0">2</h6>
+                  <small>Action2</small>
+                </a>
+                <hr />
+                <a class="dropdown-item" href="#">
+                  <h6 class="fw-normal mb-0">3</h6>
+                  <small>Action3</small>
+                </a>
+              </div>
+            </div>
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <!-- style 内联样式 -->
+                <img src="./img/3.jpg" alt="" style="width: 40px; height: 40px" id="userPic" />
+                <span class="d-none d-lg-inline-flex" id="nickname">You</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end bg-light border-0 rouded-0 rouded-bottom m-0">
+                <a class="dropdown-item" href="myCenter.html">个人中心</a>
+                <a class="dropdown-item" href="#">设置</a>
+                <a class="dropdown-item" href="javascript:;" id="outLogin">退出</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- 头部导航 end -->
+
+        <!-- 表格 start -->
+        <div class="card border-0 shadow-sm m-4">
+          <div class="card-body">
+            <div class="userInfo">
+              <span>用户ID</span>
+              <input type="text" class="form-control" id="searchUser" placeholder="请输入学号" />
+              <button class="btn btn-primary" id="searchBtn">
+                <i class="bi bi-search"></i>
+                查询
+              </button>
+              <button class="btn btn-primary" id="resetBtn">
+                <i class="bi bi-x-circle"></i>
+                重置
+              </button>
+              <button class="btn btn-success addUserBtn">
+                <i class="bi bi-plus-circle"></i>
+                添加
+              </button>
+              <div class="addUser">
+                <form id="myForm">
+                  <input class="form-control" type="text" name="id" placeholder="请输入学号" maxlength="10" />
+                  <input class="form-control" type="text" name="name" placeholder="姓名" />
+                  <input class="form-control" type="text" name="English" placeholder="英语" />
+                  <input class="form-control" type="text" name="Math" placeholder="数学" />
+                  <input class="form-control" type="text" name="Computer" placeholder="计算机原理" />
+                  <input class="form-control" type="text" name="MySql" placeholder="数据库" />
+                  <input class="form-control" type="text" name="Digital" placeholder="数字图像" />
+                  <input class="form-control" type="number" name="Circuitry" placeholder="电路原理" />
+                  <button type="button" class="btn btn-primary postBtn">添加</button>
+                  <button type="button" class="btn btn-secondary closeBtn">取消</button>
+                </form>
+              </div>
+            </div>
+
+            <table class="table">
+              <!-- 表头 -->
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">学号</th>
+                  <th scope="col">姓名</th>
+                  <th scope="col">英语</th>
+                  <th scope="col">数学</th>
+                  <th scope="col">计算机原理</th>
+                  <th scope="col">数据库</th>
+                  <th scope="col">数字图像</th>
+                  <th scope="col">电路原理</th>
+                  <th scope="col">总分</th>
+                  <th scope="col">总评</th>
+                </tr>
+              </thead>
+              <!-- 表格主体内容 -->
+              <tbody class="rander">
+                <script></script>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 表格 end -->
+      </div>
+      <!-- 内容区域end -->
+    </div>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="./js//bootstrap.bundle.min.js.map"></script> -->
+    <script src="./js/index.js"></script>
+  </body>
+</html>
